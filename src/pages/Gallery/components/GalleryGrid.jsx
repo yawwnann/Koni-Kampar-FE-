@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { X } from "lucide-react";
 
 const videoIds = ["VVU_dLx4kLg", "FDOaoGVPTDw", "S8jhkEahjL4", "myN9gkDwQNI"];
@@ -44,7 +45,8 @@ const allGalleryImages = generateGalleryItems(12, 0); // 12 images for modal
 const allGalleryVideos = generateGalleryItems(0, 12); // 12 videos for modal
 
 export default function GalleryGrid() {
-  const [activeTab, setActiveTab] = useState("gambar");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get("type") || "gambar";
   const [showModal, setShowModal] = useState(false);
   const [modalPage, setModalPage] = useState(0);
 
@@ -93,7 +95,7 @@ export default function GalleryGrid() {
         <div className="mb-8 flex gap-4">
           <button
             onClick={() => {
-              setActiveTab("gambar");
+              setSearchParams({ type: "gambar" });
               setModalPage(0);
             }}
             className={`inline-flex items-center gap-2 rounded-full px-5 py-2 font-medium transition ${
@@ -106,7 +108,7 @@ export default function GalleryGrid() {
           </button>
           <button
             onClick={() => {
-              setActiveTab("vidio");
+              setSearchParams({ type: "vidio" });
               setModalPage(0);
             }}
             className={`inline-flex items-center gap-2 rounded-full px-5 py-2 font-medium transition ${
