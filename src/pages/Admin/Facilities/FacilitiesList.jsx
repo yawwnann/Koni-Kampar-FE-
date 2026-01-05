@@ -20,6 +20,7 @@ const mockFacilities = [
     location: "Jl. Stadion No. 1",
     capacity: "15.000",
     status: "active",
+    image: "/image/Fasilitas/Stadion.png",
   },
   {
     id: 2,
@@ -28,6 +29,7 @@ const mockFacilities = [
     location: "Jl. Olahraga No. 5",
     capacity: "5.000",
     status: "active",
+    image: "/image/Fasilitas/GOR.png",
   },
   {
     id: 3,
@@ -36,6 +38,7 @@ const mockFacilities = [
     location: "Jl. Renang No. 10",
     capacity: "500",
     status: "active",
+    image: "/image/Fasilitas/Kolam_Berenang.png",
   },
   {
     id: 4,
@@ -44,14 +47,25 @@ const mockFacilities = [
     location: "Jl. Tenis No. 3",
     capacity: "200",
     status: "maintenance",
+    image: "/image/Fasilitas/Lapangan_Tenis.png",
   },
   {
     id: 5,
-    name: "Lapangan Atletik",
+    name: "Lapangan Bulu Tangkis",
     type: "Lapangan",
-    location: "Jl. Atletik No. 7",
-    capacity: "2.000",
+    location: "Jl. Olahraga No. 15",
+    capacity: "500",
     status: "active",
+    image: "/image/Fasilitas/Lapangan_Bulu_Tangkis.png",
+  },
+  {
+    id: 6,
+    name: "Gedung Silat",
+    type: "Gedung",
+    location: "Jl. Pahlawan No. 8",
+    capacity: "300",
+    status: "active",
+    image: "/image/Fasilitas/Gedung_silat.png",
   },
 ];
 
@@ -220,8 +234,18 @@ export default function FacilitiesList() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
-                        <Building2 className="w-6 h-6 text-blue-600" />
+                      <div className="w-12 h-12 bg-gray-100 rounded-xl overflow-hidden">
+                        {item.image ? (
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-blue-50 flex items-center justify-center">
+                            <Building2 className="w-6 h-6 text-blue-600" />
+                          </div>
+                        )}
                       </div>
                       <span className="font-medium text-gray-900">
                         {item.name}

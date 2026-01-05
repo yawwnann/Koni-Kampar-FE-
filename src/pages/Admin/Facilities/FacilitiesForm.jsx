@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { ArrowLeft, Save, Upload, X } from "lucide-react";
+import FacilitiesImageReference from "./FacilitiesImageReference";
 
 export default function FacilitiesForm() {
   const navigate = useNavigate();
@@ -30,6 +31,8 @@ export default function FacilitiesForm() {
         status: "active",
         image: null,
       });
+      // Set preview untuk gambar yang sudah ada
+      setImagePreview("/image/Fasilitas/Stadion.png");
     }
   }, [id, isEdit]);
 
@@ -273,6 +276,9 @@ export default function FacilitiesForm() {
           </div>
         </div>
       </form>
+
+      {/* Image Reference */}
+      <FacilitiesImageReference />
     </div>
   );
 }
