@@ -189,7 +189,7 @@ export default function Bio() {
                     <img
                       src={person.image}
                       alt={person.name}
-                      className="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105"
+                      className="w-full h-full object-contain transition duration-300 group-hover:scale-105"
                     />
 
                     {/* Logo Badge */}
@@ -243,11 +243,11 @@ export default function Bio() {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="relative h-64 overflow-hidden rounded-t-2xl">
+            <div className="relative h-64 overflow-hidden rounded-t-2xl bg-gray-100">
               <img
                 src={selectedPerson.image}
                 alt={selectedPerson.name}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain"
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
               <button

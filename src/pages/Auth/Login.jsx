@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, Eye, EyeOff, LogIn } from "lucide-react";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -18,10 +20,28 @@ export default function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log("Login:", formData);
+    setLoading(true);
+
+    try {
+      // Simulate API call - replace with actual authentication
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // For demo: any login will redirect to admin
+      // In production, validate credentials and check user role
+      console.log("Login:", formData);
+
+      // Store token (in production, use proper auth)
+      localStorage.setItem("adminToken", "demo-token");
+
+      // Redirect to admin dashboard
+      navigate("/admin");
+    } catch (error) {
+      console.error("Login error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -131,10 +151,17 @@ export default function Login() {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 focus:ring-4 focus:ring-red-500/20 transition"
+                disabled={loading}
+                className="w-full flex items-center justify-center gap-2 bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 focus:ring-4 focus:ring-red-500/20 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <LogIn className="h-5 w-5" />
-                Masuk
+                {loading ? (
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                ) : (
+                  <>
+                    <LogIn className="h-5 w-5" />
+                    Masuk
+                  </>
+                )}
               </button>
             </form>
 
